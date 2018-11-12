@@ -1,0 +1,24 @@
+version: '2.3'
+networks:
+  tema2aos:
+    driver: bridge
+
+services:
+  springboot-service:
+    ports:
+      - 8000:8080
+    image: springio/tema2aos
+    networks:
+      - tema2aos
+  
+  docker-mysql:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=tema2aos
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+    ports:
+      - 3306:3306
+    networks:
+      - tema2aos
